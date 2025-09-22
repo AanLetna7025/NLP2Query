@@ -1,0 +1,638 @@
+input,output
+Get all users who signed up today,SELECT * FROM users WHERE signup_date = CURRENT_DATE;
+Find products with price greater than 100,SELECT * FROM products WHERE price > 100;
+Count number of orders placed by each user,"SELECT user_id, COUNT(*) FROM orders GROUP BY user_id;"
+Get the names of all users,SELECT name FROM users;
+List all products that are out of stock,SELECT * FROM products WHERE stock = 0;
+Show all orders placed on 2024-07-22,SELECT * FROM orders WHERE order_date = '2024-07-22';
+Get emails of users who signed up after 2024-01-01,SELECT email FROM users WHERE signup_date > '2024-01-01';
+List product names and prices,"SELECT name, price FROM products;"
+Find total number of users,SELECT COUNT(*) FROM users;
+Show all users who have placed more than 5 orders,SELECT user_id FROM orders GROUP BY user_id HAVING COUNT(*) > 5;
+Get the highest priced product,SELECT * FROM products ORDER BY price DESC LIMIT 1;
+List all products cheaper than 500,SELECT * FROM products WHERE price < 500;
+Find average order amount,SELECT AVG(amount) FROM orders;
+Show order details and user name,"SELECT o.order_id, o.amount, u.name FROM orders o JOIN users u ON o.user_id = u.id;"
+How many products are there in total?,SELECT COUNT(*) FROM products;
+Find users who haven't placed any orders,SELECT * FROM users WHERE id NOT IN (SELECT user_id FROM orders);
+Get the total sales amount,SELECT SUM(amount) FROM orders;
+Show all orders made in July 2024,SELECT * FROM orders WHERE MONTH(order_date) = 7 AND YEAR(order_date) = 2024;
+Get products with stock more than 50,SELECT * FROM products WHERE stock > 50;
+List all users along with number of orders they placed,"SELECT u.name, COUNT(o.order_id) FROM users u LEFT JOIN orders o ON u.id = o.user_id GROUP BY u.name;"
+Show all products with stock less than 20,SELECT * FROM products WHERE stock < 20;
+List users who signed up before 2023-01-01,SELECT * FROM users WHERE signup_date < '2023-01-01';
+Find users with email ending in '@gmail.com',SELECT * FROM users WHERE email LIKE '%@gmail.com';
+Get names of products that cost exactly 500,SELECT name FROM products WHERE price = 500;
+Show orders with amount greater than 1000,SELECT * FROM orders WHERE amount > 1000;
+List the order IDs made by user with ID 2,SELECT order_id FROM orders WHERE user_id = 2;
+Find total revenue from all orders,SELECT SUM(amount) FROM orders;
+Show products sorted by price descending,SELECT * FROM products ORDER BY price DESC;
+List the top 5 most expensive products,SELECT * FROM products ORDER BY price DESC LIMIT 5;
+Get user IDs who made orders in 2024,SELECT DISTINCT user_id FROM orders WHERE YEAR(order_date) = 2024;
+Find users who haven't made any orders,SELECT * FROM users WHERE id NOT IN (SELECT user_id FROM orders);
+List products priced between 100 and 300,SELECT * FROM products WHERE price BETWEEN 100 AND 300;
+Count how many products are in stock,SELECT COUNT(*) FROM products WHERE stock > 0;
+Get names of users and their total spending,"SELECT u.name, SUM(o.amount) FROM users u JOIN orders o ON u.id = o.user_id GROUP BY u.name;"
+Show order dates and total amounts,"SELECT order_date, total_amount FROM orders;"
+List product names and available stock,"SELECT name, stock FROM products;"
+Find the cheapest product,SELECT * FROM products ORDER BY price ASC LIMIT 1;
+Get the most recent order,SELECT * FROM orders ORDER BY order_date DESC LIMIT 1;
+Count how many users signed up this year,SELECT COUNT(*) FROM users WHERE YEAR(signup_date) = YEAR(CURRENT_DATE);
+List users who have made at least 3 orders,SELECT user_id FROM orders GROUP BY user_id HAVING COUNT(*) >= 3;
+Show product with the highest stock,SELECT * FROM products ORDER BY stock DESC LIMIT 1;
+Get average price of all products,SELECT AVG(price) FROM products;
+Show total number of orders,SELECT COUNT(*) FROM orders;
+List all orders placed in June 2024,SELECT * FROM orders WHERE MONTH(order_date) = 6 AND YEAR(order_date) = 2024;
+Find users who placed orders over 5000,SELECT user_id FROM orders WHERE amount > 5000;
+Show products that are exactly out of stock,SELECT * FROM products WHERE stock = 0;
+Get users and the number of their orders,"SELECT u.name, COUNT(o.order_id) FROM users u LEFT JOIN orders o ON u.id = o.user_id GROUP BY u.name;"
+List the order count for each day,"SELECT order_date, COUNT(*) FROM orders GROUP BY order_date;"
+Find the name and price of the cheapest product,"SELECT name, price FROM products ORDER BY price ASC LIMIT 1;"
+List all users along with their signup date,"SELECT name, signup_date FROM users;"
+List all users who signed up after January 2023,SELECT * FROM users WHERE signup_date > '2023-01-01';
+Show all orders placed by user ID 5,SELECT * FROM orders WHERE user_id = 5;
+Find total revenue from orders placed in 2024,SELECT SUM(amount) FROM orders WHERE YEAR(order_date) = 2024;
+List product names and their prices in ascending order,"SELECT name, price FROM products ORDER BY price ASC;"
+Show products that are out of stock,SELECT * FROM products WHERE stock = 0;
+Get users who have not placed any orders,SELECT * FROM users WHERE id NOT IN (SELECT user_id FROM orders);
+Show number of products with stock above 50,SELECT COUNT(*) FROM products WHERE stock > 50;
+List users whose name starts with 'A',SELECT * FROM users WHERE name LIKE 'A%';
+Get all orders with amount more than 5000,SELECT * FROM orders WHERE amount > 5000;
+Count how many products cost more than 300,SELECT COUNT(*) FROM products WHERE price > 300;
+List all reviews with rating 5,SELECT * FROM reviews WHERE rating = 5;
+Get average payment amount per user,"SELECT user_id, AVG(amount) FROM payments GROUP BY user_id;"
+List payment methods used in 2024,SELECT DISTINCT method FROM payments WHERE YEAR(payment_date) = 2024;
+Show top 10 products with highest stock,SELECT * FROM products ORDER BY stock DESC LIMIT 10;
+Get users who made payments via PayPal,SELECT * FROM payments WHERE method = 'PayPal';
+Show names and emails of all users,"SELECT name, email FROM users;"
+Find most expensive product in each category,"SELECT category_id, MAX(price) FROM products GROUP BY category_id;"
+List all products in 'Electronics' category,SELECT * FROM products WHERE category_id = (SELECT category_id FROM categories WHERE name = 'Electronics');
+Show number of orders per user,"SELECT user_id, COUNT(*) FROM orders GROUP BY user_id;"
+Find total revenue per category,"SELECT category_id, SUM(amount) FROM orders JOIN products ON orders.product_id = products.product_id GROUP BY category_id;"
+Get review count for each product,"SELECT product_id, COUNT(*) FROM reviews GROUP BY product_id;"
+List users who reviewed more than 3 products,SELECT user_id FROM reviews GROUP BY user_id HAVING COUNT(*) > 3;
+Show failed payments,SELECT * FROM payments WHERE status = 'failed';
+List all categories and number of products in each,"SELECT category_id, COUNT(*) FROM products GROUP BY category_id;"
+Show users who made a payment over 1000,SELECT DISTINCT user_id FROM payments WHERE amount > 1000;
+Get last 5 orders placed,SELECT * FROM orders ORDER BY order_date DESC LIMIT 5;
+Find all orders made on weekends,"SELECT * FROM orders WHERE WEEKDAY(order_date) IN (5, 6);"
+List payments made using credit card,SELECT * FROM payments WHERE method = 'Credit Card';
+Show reviews containing the word 'excellent',SELECT * FROM reviews WHERE review_text LIKE '%excellent%';
+Get count of unique payment methods,SELECT COUNT(DISTINCT method) FROM payments;
+List users who signed up in 2025,SELECT * FROM users WHERE YEAR(signup_date) = 2025;
+Show orders above amount 2000,SELECT * FROM orders WHERE amount > 2000;
+Find users who placed orders in March 2024,SELECT * FROM orders WHERE MONTH(order_date) = 3 AND YEAR(order_date) = 2024;
+Get total stock of all products,SELECT SUM(stock) FROM products;
+Show names of users who gave a 1-star review,SELECT u.name FROM users u JOIN reviews r ON u.id = r.user_id WHERE r.rating = 1;
+List products in 'Fashion' category,SELECT * FROM products WHERE category_id = (SELECT id FROM categories WHERE name = 'Fashion');
+Get users who made more than 2 payments,SELECT user_id FROM payments GROUP BY user_id HAVING COUNT(*) > 2;
+Show all categories with more than 5 products,SELECT category_id FROM products GROUP BY category_id HAVING COUNT(*) > 5;
+List products priced below 100,SELECT * FROM products WHERE price < 100;
+Find all reviews that mention 'poor',SELECT * FROM reviews WHERE review_text LIKE '%poor%';
+Show orders sorted by amount descending,SELECT * FROM orders ORDER BY amount DESC;
+Get payment methods used by user ID 10,SELECT method FROM payments WHERE user_id = 10;
+List all failed payments in 2025,SELECT * FROM payments WHERE status = 'failed' AND YEAR(payment_date) = 2025;
+Show number of reviews per user,"SELECT user_id, COUNT(*) FROM reviews GROUP BY user_id;"
+Get users who made payments through UPI,SELECT * FROM payments WHERE method = 'UPI';
+List top 3 products by revenue,"SELECT product_id, SUM(amount) FROM orders GROUP BY product_id ORDER BY SUM(amount) DESC LIMIT 3;"
+Show users who have reviewed 'Mobile Phones',SELECT DISTINCT u.id FROM users u JOIN reviews r ON u.id = r.user_id JOIN products p ON r.product_id = p.id WHERE p.category_id = (SELECT id FROM categories WHERE name = 'Mobile Phones');
+Get the highest-rated product,SELECT * FROM products ORDER BY rating DESC LIMIT 1;
+Find the total number of reviews in 2024,SELECT COUNT(*) FROM reviews WHERE YEAR(review_date) = 2024;
+Show users with more than one order,SELECT user_id FROM orders GROUP BY user_id HAVING COUNT(*) > 1;
+Get payments grouped by status,"SELECT status, COUNT(*) FROM payments GROUP BY status;"
+List all categories sorted alphabetically,SELECT * FROM categories ORDER BY name ASC;
+Find users who didn’t make any payment,SELECT * FROM users WHERE id NOT IN (SELECT user_id FROM payments);
+Get products reviewed more than 10 times,SELECT product_id FROM reviews GROUP BY product_id HAVING COUNT(*) > 10;
+Show average rating per category,"SELECT category_id, AVG(rating) FROM products p JOIN reviews r ON p.id = r.product_id GROUP BY category_id;"
+List names of users and total they paid,"SELECT u.name, SUM(p.amount) FROM users u JOIN payments p ON u.id = p.user_id GROUP BY u.name;"
+Show top 5 reviewers by count,"SELECT user_id, COUNT(*) FROM reviews GROUP BY user_id ORDER BY COUNT(*) DESC LIMIT 5;"
+Get most ordered product,SELECT product_id FROM orders GROUP BY product_id ORDER BY COUNT(*) DESC LIMIT 1;
+List reviews posted after June 2024,SELECT * FROM reviews WHERE review_date > '2024-06-30';
+Show users who used more than one payment method,SELECT user_id FROM payments GROUP BY user_id HAVING COUNT(DISTINCT method) > 1;
+Find products never reviewed,SELECT * FROM products WHERE id NOT IN (SELECT DISTINCT product_id FROM reviews);
+List categories with average product price > 500,SELECT category_id FROM products GROUP BY category_id HAVING AVG(price) > 500;
+Show all reviews for product ID 10,SELECT * FROM reviews WHERE product_id = 10;
+List users who have both ordered and reviewed,SELECT DISTINCT u.id FROM users u JOIN orders o ON u.id = o.user_id JOIN reviews r ON u.id = r.user_id;
+Show most recent payment for each user,"SELECT user_id, MAX(payment_date) FROM payments GROUP BY user_id;"
+Find number of distinct users who ordered in 2023,SELECT COUNT(DISTINCT user_id) FROM orders WHERE YEAR(order_date) = 2023;
+List products purchased with PayPal,SELECT * FROM orders WHERE payment_id IN (SELECT id FROM payments WHERE method = 'PayPal');
+Show order count by month,"SELECT MONTH(order_date) AS month, COUNT(*) FROM orders GROUP BY month;"
+Get users with max total order amount,SELECT user_id FROM orders GROUP BY user_id ORDER BY SUM(amount) DESC LIMIT 1;
+List all reviews where rating <= 2,SELECT * FROM reviews WHERE rating <= 2;
+Find duplicate emails in users table,"SELECT email, COUNT(*) FROM users GROUP BY email HAVING COUNT(*) > 1;"
+Show products with exactly 50 in stock,SELECT * FROM products WHERE stock = 50;
+List payments made in the last 30 days,SELECT * FROM payments WHERE payment_date >= CURRENT_DATE - INTERVAL 30 DAY;
+Get total order amount per user in 2024,"SELECT user_id, SUM(amount) FROM orders WHERE YEAR(order_date) = 2024 GROUP BY user_id;"
+Show users who made payment but no order,SELECT * FROM users WHERE id IN (SELECT DISTINCT user_id FROM payments) AND id NOT IN (SELECT DISTINCT user_id FROM orders);
+List review text and date for product ID 5,"SELECT review_text, review_date FROM reviews WHERE product_id = 5;"
+Get names of products with 5-star reviews only,SELECT name FROM products WHERE id IN (SELECT product_id FROM reviews GROUP BY product_id HAVING MIN(rating) = 5);
+Show average amount of successful payments,SELECT AVG(amount) FROM payments WHERE status = 'successful';
+List products never ordered,SELECT * FROM products WHERE id NOT IN (SELECT DISTINCT product_id FROM orders);
+Get number of users by signup month,"SELECT MONTH(signup_date) AS month, COUNT(*) FROM users GROUP BY month;"
+Find orders made between 2024-01-01 and 2024-06-30,SELECT * FROM orders WHERE order_date BETWEEN '2024-01-01' AND '2024-06-30';
+Get all reviews from users with Gmail address,SELECT * FROM reviews WHERE user_id IN (SELECT id FROM users WHERE email LIKE '%@gmail.com');
+Show top reviewed product in each category,"SELECT p.name, COUNT(r.id) FROM products p JOIN reviews r ON p.id = r.product_id GROUP BY p.id ORDER BY COUNT(r.id) DESC LIMIT 1;"
+List names of users who ordered more than 5 times,SELECT name FROM users WHERE id IN (SELECT user_id FROM orders GROUP BY user_id HAVING COUNT(*) > 5);
+Get categories with more than 100 reviews,SELECT category_id FROM reviews GROUP BY category_id HAVING COUNT(*) > 100;
+List all users who paid with debit card,SELECT * FROM payments WHERE method = 'debit card';
+Find average stock of electronics products,SELECT AVG(stock) FROM products WHERE category_id = (SELECT id FROM categories WHERE name = 'Electronics');
+Show names of users and count of failed payments,"SELECT u.name, COUNT(*) FROM users u JOIN payments p ON u.id = p.user_id WHERE p.status = 'failed' GROUP BY u.name;"
+List reviews that mention 'value for money',SELECT * FROM reviews WHERE review_text LIKE '%value for money%';
+Show all users who placed an order today,SELECT * FROM orders WHERE order_date = CURRENT_DATE;
+List unique category names from products,SELECT DISTINCT name FROM categories;
+Get payment count by method,"SELECT method, COUNT(*) FROM payments GROUP BY method;"
+Find users who signed up on a weekend,"SELECT * FROM users WHERE DAYOFWEEK(signup_date) IN (1, 7);"
+List average order amount by user,"SELECT user_id, AVG(amount) FROM orders GROUP BY user_id;"
+Show reviews for products with price above 1000,SELECT * FROM reviews WHERE product_id IN (SELECT id FROM products WHERE price > 1000);
+List emails of users who haven’t placed orders,SELECT email FROM users WHERE id NOT IN (SELECT DISTINCT user_id FROM orders);
+Get top 3 payment methods by usage,SELECT method FROM payments GROUP BY method ORDER BY COUNT(*) DESC LIMIT 3;
+List all products and corresponding categories,"SELECT p.name, c.name FROM products p JOIN categories c ON p.category_id = c.id;"
+Find product with the most reviews in 2024,SELECT product_id FROM reviews WHERE YEAR(review_date) = 2024 GROUP BY product_id ORDER BY COUNT(*) DESC LIMIT 1;
+Show average price of reviewed products,SELECT AVG(price) FROM products WHERE id IN (SELECT DISTINCT product_id FROM reviews);
+Get total spending of each user in 2023,"SELECT user_id, SUM(amount) FROM orders WHERE YEAR(order_date) = 2023 GROUP BY user_id;"
+Find reviews containing keyword 'refund',SELECT * FROM reviews WHERE review_text LIKE '%refund%';
+List most used payment method in 2025,SELECT method FROM payments WHERE YEAR(payment_date) = 2025 GROUP BY method ORDER BY COUNT(*) DESC LIMIT 1;
+Show all payments above 1000 made with UPI,SELECT * FROM payments WHERE method = 'UPI' AND amount > 1000;
+List users who ordered and reviewed same product,SELECT user_id FROM reviews WHERE product_id IN (SELECT product_id FROM orders) GROUP BY user_id HAVING COUNT(*) > 0;
+Get percentage of out-of-stock products,"SELECT ROUND(100.0 * COUNT(*) / (SELECT COUNT(*) FROM products), 2) AS percentage FROM products WHERE stock = 0;"
+Show categories with no products,SELECT * FROM categories WHERE id NOT IN (SELECT DISTINCT category_id FROM products);
+Find reviews submitted in last 7 days,SELECT * FROM reviews WHERE review_date >= CURRENT_DATE - INTERVAL 7 DAY;
+List users who paid more than once on same day,"SELECT user_id FROM payments GROUP BY user_id, payment_date HAVING COUNT(*) > 1;"
+Get orders where payment failed,SELECT * FROM orders WHERE payment_id IN (SELECT id FROM payments WHERE status = 'failed');
+Show reviews posted by user with most orders,SELECT * FROM reviews WHERE user_id = (SELECT user_id FROM orders GROUP BY user_id ORDER BY COUNT(*) DESC LIMIT 1);
+List users with both Gmail and Yahoo email,SELECT * FROM users WHERE email LIKE '%gmail.com' OR email LIKE '%yahoo.com';
+Find products with same price but different category,SELECT * FROM products WHERE price IN (SELECT price FROM products GROUP BY price HAVING COUNT(*) > 1) AND category_id NOT IN (SELECT category_id FROM products GROUP BY price HAVING COUNT(*) = 1);
+Get review text and rating for lowest rated product,"SELECT review_text, rating FROM reviews WHERE rating = (SELECT MIN(rating) FROM reviews);"
+"Show order ID, amount, and payment status","SELECT id, amount, (SELECT status FROM payments WHERE id = o.payment_id) AS payment_status FROM orders o;"
+List product names and total order count,"SELECT name, (SELECT COUNT(*) FROM orders WHERE product_id = p.id) AS total_orders FROM products p;"
+Find reviews with empty text or null,SELECT * FROM reviews WHERE review_text IS NULL OR review_text = '';
+List users with at least one review and no order,SELECT * FROM users WHERE id IN (SELECT DISTINCT user_id FROM reviews) AND id NOT IN (SELECT DISTINCT user_id FROM orders);
+Show most recent signup date,SELECT MAX(signup_date) FROM users;
+List all payments sorted by amount ascending,SELECT * FROM payments ORDER BY amount ASC;
+Get names of products reviewed 5+ times,SELECT name FROM products WHERE id IN (SELECT product_id FROM reviews GROUP BY product_id HAVING COUNT(*) >= 5);
+Show all reviews and related product names,"SELECT r.*, p.name FROM reviews r JOIN products p ON r.product_id = p.id;"
+Find duplicate usernames in users table,"SELECT username, COUNT(*) FROM users GROUP BY username HAVING COUNT(*) > 1;"
+List all orders paid by credit card in 2024,SELECT * FROM orders WHERE YEAR(order_date) = 2024 AND payment_id IN (SELECT id FROM payments WHERE method = 'credit card');
+Show payment method used for each order,"SELECT o.id, (SELECT method FROM payments WHERE id = o.payment_id) AS method FROM orders o;"
+Find orders where amount equals payment amount,SELECT * FROM orders o JOIN payments p ON o.payment_id = p.id WHERE o.amount = p.amount;
+Get users who never signed in again after signup,SELECT * FROM users WHERE id NOT IN (SELECT DISTINCT user_id FROM logins WHERE login_date > signup_date);
+Show 5 products with least stock,SELECT * FROM products ORDER BY stock ASC LIMIT 5;
+List total number of reviews by category,"SELECT category_id, COUNT(*) FROM reviews r JOIN products p ON r.product_id = p.id GROUP BY category_id;"
+Find reviews with rating mismatch (rating not between 1–5),SELECT * FROM reviews WHERE rating < 1 OR rating > 5;
+List user names who reviewed a product twice,"SELECT user_id FROM reviews GROUP BY user_id, product_id HAVING COUNT(*) > 1;"
+Show total orders placed on Sundays,SELECT COUNT(*) FROM orders WHERE DAYOFWEEK(order_date) = 1;
+List category-wise max product price,"SELECT category_id, MAX(price) FROM products GROUP BY category_id;"
+List all users who made orders in 2022,SELECT * FROM orders WHERE YEAR(order_date) = 2022;
+Show total revenue generated in 2025,SELECT SUM(amount) FROM payments WHERE YEAR(payment_date) = 2025 AND status = 'successful';
+Find users who made only failed payments,SELECT user_id FROM payments WHERE status = 'failed' GROUP BY user_id HAVING COUNT(*) = COUNT(CASE WHEN status = 'failed' THEN 1 END);
+List products that were ordered more than 100 times,SELECT product_id FROM orders GROUP BY product_id HAVING COUNT(*) > 100;
+Get names of users who reviewed more than 3 products,SELECT user_id FROM reviews GROUP BY user_id HAVING COUNT(*) > 3;
+List products with 4-star rating and above,SELECT * FROM products WHERE rating >= 4;
+Show reviews for orders above 5000,SELECT * FROM reviews r JOIN orders o ON r.product_id = o.product_id WHERE o.amount > 5000;
+Find average number of products per category,"SELECT category_id, AVG(product_count) FROM (SELECT category_id, COUNT(*) as product_count FROM products GROUP BY category_id) AS temp GROUP BY category_id;"
+List all categories that have no reviews,SELECT * FROM categories WHERE id NOT IN (SELECT DISTINCT category_id FROM products p JOIN reviews r ON p.id = r.product_id);
+Get total successful payments for user ID 12,SELECT SUM(amount) FROM payments WHERE status = 'successful' AND user_id = 12;
+List users with orders but no reviews,SELECT user_id FROM orders WHERE user_id NOT IN (SELECT DISTINCT user_id FROM reviews);
+Find the most common payment method,"SELECT method, COUNT(*) FROM payments GROUP BY method ORDER BY COUNT(*) DESC LIMIT 1;"
+Get names of users who made orders but failed all payments,SELECT user_id FROM orders WHERE user_id IN (SELECT user_id FROM payments WHERE status = 'failed') AND user_id NOT IN (SELECT user_id FROM payments WHERE status = 'successful');
+List orders where no payment is recorded,SELECT * FROM orders WHERE id NOT IN (SELECT DISTINCT order_id FROM payments);
+Show users who reviewed but never ordered,SELECT user_id FROM reviews WHERE user_id NOT IN (SELECT DISTINCT user_id FROM orders);
+List top 10 users by total amount paid,"SELECT user_id, SUM(amount) FROM payments GROUP BY user_id ORDER BY SUM(amount) DESC LIMIT 10;"
+Show monthly revenue trend in 2024,"SELECT MONTH(order_date), SUM(amount) FROM orders GROUP BY MONTH(order_date);"
+Get users who gave both 1-star and 5-star reviews,SELECT user_id FROM reviews WHERE rating = 1 INTERSECT SELECT user_id FROM reviews WHERE rating = 5;
+List products that were restocked after going out of stock,SELECT * FROM products WHERE stock = 0 AND restock_date IS NOT NULL;
+Get all payments with mismatched order_id,SELECT * FROM payments WHERE order_id NOT IN (SELECT id FROM orders);
+List all reviews and respective product prices,"SELECT r.*, p.price FROM reviews r JOIN products p ON r.product_id = p.id;"
+Find orders with null shipping address,SELECT * FROM orders WHERE shipping_address IS NULL;
+List usernames who reviewed product ID 1,SELECT u.username FROM users u JOIN reviews r ON u.id = r.user_id WHERE r.product_id = 1;
+Show products with average rating < 2,SELECT product_id FROM reviews GROUP BY product_id HAVING AVG(rating) < 2;
+Find categories with only one product,SELECT category_id FROM products GROUP BY category_id HAVING COUNT(*) = 1;
+List all reviews for electronics products,SELECT r.* FROM reviews r JOIN products p ON r.product_id = p.id WHERE p.category_id = (SELECT id FROM categories WHERE name = 'Electronics');
+Get most recent order for each product,SELECT * FROM orders WHERE order_date = (SELECT MAX(order_date) FROM orders WHERE product_id = orders.product_id);
+Show top 3 products ordered in January 2025,SELECT product_id FROM orders WHERE MONTH(order_date) = 1 AND YEAR(order_date) = 2025 GROUP BY product_id ORDER BY COUNT(*) DESC LIMIT 3;
+List emails of users who made 10+ orders,SELECT email FROM users WHERE id IN (SELECT user_id FROM orders GROUP BY user_id HAVING COUNT(*) >= 10);
+Show total number of failed payments by year,"SELECT YEAR(payment_date), COUNT(*) FROM payments WHERE status = 'failed' GROUP BY YEAR(payment_date);"
+List users who made payments using 3+ different methods,SELECT user_id FROM payments GROUP BY user_id HAVING COUNT(DISTINCT method) >= 3;
+Get products that were never paid for,SELECT * FROM products WHERE id NOT IN (SELECT DISTINCT product_id FROM payments);
+Show count of users by review rating given,"SELECT rating, COUNT(*) FROM reviews GROUP BY rating;"
+List all products with null category,SELECT * FROM products WHERE category_id IS NULL;
+Show users with same name but different email,SELECT name FROM users GROUP BY name HAVING COUNT(DISTINCT email) > 1;
+Get daily average order amount for last 7 days,"SELECT order_date, AVG(amount) FROM orders WHERE order_date >= CURRENT_DATE - INTERVAL 7 DAY GROUP BY order_date;"
+List usernames who signed up and reviewed same day,SELECT username FROM users WHERE DATE(signup_date) = (SELECT DATE(review_date) FROM reviews WHERE user_id = users.id);
+Find users who ordered on two consecutive days,"SELECT user_id FROM orders o1 JOIN orders o2 ON o1.user_id = o2.user_id AND DATEDIFF(o1.order_date, o2.order_date) = 1;"
+List categories with highest average product price,SELECT category_id FROM products GROUP BY category_id ORDER BY AVG(price) DESC LIMIT 1;
+Get product with max total review text length,SELECT id FROM products ORDER BY LENGTH((SELECT GROUP_CONCAT(review_text) FROM reviews WHERE product_id = products.id)) DESC LIMIT 1;
+Find reviews made during night time,SELECT * FROM reviews WHERE HOUR(review_date) BETWEEN 0 AND 6;
+List orders with both debit and credit card payments,"SELECT user_id FROM payments WHERE method IN ('debit card', 'credit card') GROUP BY order_id HAVING COUNT(DISTINCT method) = 2;"
+Show products ordered by users who gave 5-star review,SELECT DISTINCT r.user_id FROM reviews r JOIN orders o ON r.product_id = o.product_id AND r.user_id = o.user_id WHERE r.rating = 5;
+List all usernames who reviewed their own orders,SELECT u.username FROM users u JOIN reviews r ON u.id = r.user_id JOIN orders o ON o.user_id = r.user_id AND o.product_id = r.product_id;
+Get users who used PayPal more than 5 times,SELECT user_id FROM payments WHERE method = 'PayPal' GROUP BY user_id HAVING COUNT(*) > 5;
+Show orders with review rating above 4,SELECT o.* FROM orders o JOIN reviews r ON o.id = r.order_id WHERE r.rating > 4;
+List categories with reviews from 100+ users,SELECT category_id FROM reviews GROUP BY category_id HAVING COUNT(DISTINCT user_id) > 100;
+Get names of users who placed 3 orders on same day,"SELECT user_id FROM orders GROUP BY user_id, order_date HAVING COUNT(*) = 3;"
+List orders not linked to any user,SELECT * FROM orders WHERE user_id IS NULL;
+Find users whose payments exceed total order amount,SELECT user_id FROM payments GROUP BY user_id HAVING SUM(amount) > (SELECT SUM(amount) FROM orders WHERE user_id = payments.user_id);
+Show reviews that include emojis,SELECT * FROM reviews WHERE review_text REGEXP '[😀-🙏]';
+List usernames who ordered the same product multiple times,"SELECT user_id FROM orders GROUP BY user_id, product_id HAVING COUNT(*) > 1;"
+Find products with multiple reviews from same user,"SELECT product_id FROM reviews GROUP BY product_id, user_id HAVING COUNT(*) > 1;"
+List payments with duplicate transaction IDs,SELECT * FROM payments GROUP BY transaction_id HAVING COUNT(*) > 1;
+Show reviews updated after 1 month of creation,"SELECT * FROM reviews WHERE DATEDIFF(update_date, review_date) > 30;"
+Get number of reviews added each week in 2025,"SELECT WEEK(review_date), COUNT(*) FROM reviews WHERE YEAR(review_date) = 2025 GROUP BY WEEK(review_date);"
+Find users who gave reviews for products they didn’t order,SELECT r.user_id FROM reviews r LEFT JOIN orders o ON r.product_id = o.product_id AND r.user_id = o.user_id WHERE o.id IS NULL;
+List all products reviewed by user ID 7,SELECT * FROM reviews WHERE user_id = 7;
+Show average time between order and payment,"SELECT AVG(DATEDIFF(payment_date, order_date)) FROM payments JOIN orders ON payments.order_id = orders.id;"
+List users who updated their email,SELECT * FROM users WHERE email_updated = TRUE;
+Show all orders from user with email ending in '@gmail.com',SELECT * FROM orders WHERE user_id IN (SELECT id FROM users WHERE email LIKE '%@gmail.com');
+List all reviews for products never ordered,SELECT * FROM reviews WHERE product_id NOT IN (SELECT DISTINCT product_id FROM orders);
+Find users who gave ratings outside 1–5 range,SELECT * FROM reviews WHERE rating NOT BETWEEN 1 AND 5;
+"List users who signed up, ordered, paid and reviewed",SELECT * FROM users WHERE id IN (SELECT user_id FROM orders) AND id IN (SELECT user_id FROM payments) AND id IN (SELECT user_id FROM reviews);
+Get names of categories with duplicate entries,SELECT name FROM categories GROUP BY name HAVING COUNT(*) > 1;
+Show percentage of failed payments per month,"SELECT MONTH(payment_date), COUNT(*) * 100.0 / (SELECT COUNT(*) FROM payments WHERE MONTH(payment_date) = MONTH(p.payment_date)) FROM payments p WHERE status = 'failed' GROUP BY MONTH(payment_date);"
+List all usernames that start with letter A,SELECT username FROM users WHERE username LIKE 'A%';
+Show order amount variance by category,"SELECT category_id, VARIANCE(amount) FROM orders JOIN products ON orders.product_id = products.id GROUP BY category_id;"
+Get review count for top 5 highest priced products,"SELECT product_id, COUNT(*) FROM reviews GROUP BY product_id ORDER BY COUNT(*) DESC LIMIT 5;"
+Find average payment delay per user,"SELECT user_id, AVG(DATEDIFF(payment_date, order_date)) FROM orders JOIN payments ON orders.id = payments.order_id GROUP BY user_id;"
+List total spending by users who reviewed only once,"SELECT user_id, SUM(amount) FROM payments WHERE user_id IN (SELECT user_id FROM reviews GROUP BY user_id HAVING COUNT(*) = 1) GROUP BY user_id;"
+Get number of products each user has ordered,"SELECT user_id, COUNT(DISTINCT product_id) FROM orders GROUP BY user_id;"
+List all orders made on leap day,SELECT * FROM orders WHERE DAY(order_date) = 29 AND MONTH(order_date) = 2;
+Get names of users who used both UPI and netbanking,SELECT user_id FROM payments WHERE method = 'UPI' INTERSECT SELECT user_id FROM payments WHERE method = 'netbanking';
+Show reviews and order date for each review,"SELECT r.*, o.order_date FROM reviews r JOIN orders o ON r.order_id = o.id;"
+List users with all orders cancelled,SELECT user_id FROM orders GROUP BY user_id HAVING SUM(CASE WHEN status = 'cancelled' THEN 1 ELSE 0 END) = COUNT(*)
+Get top 5 products with highest refund complaints,SELECT product_id FROM reviews WHERE review_text LIKE '%refund%' GROUP BY product_id ORDER BY COUNT(*) DESC LIMIT 5;
+Show orders placed from mobile devices,SELECT * FROM orders WHERE device_used = 'mobile';
+List duplicate product names,SELECT name FROM products GROUP BY name HAVING COUNT(*) > 1;
+Find reviews with exactly 3 sentences,"SELECT * FROM reviews WHERE LENGTH(review_text) - LENGTH(REPLACE(review_text, '.', '')) = 2;"
+Show average time to deliver an order,"SELECT AVG(DATEDIFF(delivery_date, order_date)) FROM orders WHERE delivery_date IS NOT NULL;"
+List users who placed 100+ orders overall,SELECT user_id FROM orders GROUP BY user_id HAVING COUNT(*) >= 100;
+Get all users,SELECT * FROM users;
+List all user names,SELECT name FROM users;
+Find users with email 'example@email.com',"SELECT id, name FROM users WHERE email = 'example@email.com';"
+Show users who signed up today,"SELECT id, name FROM users WHERE signup_date = CURRENT_DATE;"
+Count total users,SELECT COUNT(id) FROM users;
+Get user ID and name for user 'Alice',"SELECT id, name FROM users WHERE name = 'Alice';"
+List users signed up after '2023-01-01',"SELECT id, name FROM users WHERE signup_date > '2023-01-01';"
+Show users whose name starts with 'J',"SELECT id, name FROM users WHERE name LIKE 'J%';"
+Find users by ID 123,"SELECT name, email FROM users WHERE id = 123;"
+How many users are there?,SELECT COUNT(id) FROM users;
+Get all user emails,SELECT email FROM users;
+List users whose email contains 'gmail',"SELECT id, name FROM users WHERE email LIKE '%gmail%';"
+Show users signed up before '2024-01-01',"SELECT id, name FROM users WHERE signup_date < '2024-01-01';"
+Find users named 'Bob',"SELECT id, email FROM users WHERE name = 'Bob';"
+Get the signup date for user ID 5,SELECT signup_date FROM users WHERE id = 5;
+List all orders,SELECT * FROM orders;
+Show all orders from user ID 7,"SELECT order_id, amount FROM orders WHERE user_id = 7;"
+Find orders with amount greater than 50,"SELECT order_id, user_id FROM orders WHERE amount > 50;"
+Count total orders,SELECT COUNT(order_id) FROM orders;
+Get order ID and amount for order 101,"SELECT user_id, amount FROM orders WHERE order_id = 101;"
+List orders placed on '2024-07-20',"SELECT order_id, user_id FROM orders WHERE order_date = '2024-07-20';"
+Show orders with amount less than 20,"SELECT order_id, amount FROM orders WHERE amount < 20;"
+Find the average order amount,SELECT AVG(amount) FROM orders;
+Get the sum of all order amounts,SELECT SUM(amount) FROM orders;
+List orders by amount in descending order,"SELECT order_id, amount FROM orders ORDER BY amount DESC;"
+Show the earliest order date,SELECT MIN(order_date) FROM orders;
+Find the latest order date,SELECT MAX(order_date) FROM orders;
+Count orders for user 10,SELECT COUNT(order_id) FROM orders WHERE user_id = 10;
+Get all orders placed in 2023,"SELECT order_id, amount FROM orders WHERE strftime('%Y', order_date) = '2023';"
+List orders with amount exactly 100,"SELECT order_id, user_id FROM orders WHERE amount = 100;"
+Get all products,SELECT * FROM products;
+List all product names,SELECT name FROM products;
+Find products with price 25.99,"SELECT product_id, name FROM products WHERE price = 25.99;"
+Count total products,SELECT COUNT(product_id) FROM products;
+Get product ID and name for 'Laptop',"SELECT product_id, price FROM products WHERE name = 'Laptop';"
+List products with stock less than 5,"SELECT product_id, name FROM products WHERE stock < 5;"
+Show products whose name contains 'Pro',"SELECT product_id, name FROM products WHERE name LIKE '%Pro%';"
+Find products by category ID 2,"SELECT product_id, name FROM products WHERE category_id = 2;"
+How many products are in stock?,SELECT COUNT(product_id) FROM products WHERE stock > 0;
+Get all product prices,SELECT price FROM products;
+List products more expensive than 500,"SELECT product_id, name FROM products WHERE price > 500;"
+Show products cheaper than 10,"SELECT product_id, name FROM products WHERE price < 10;"
+Find the most expensive product,"SELECT product_id, name, price FROM products ORDER BY price DESC LIMIT 1;"
+Get the cheapest product,"SELECT product_id, name, price FROM products ORDER BY price ASC LIMIT 1;"
+List all categories,SELECT * FROM categories;
+Show all category names,SELECT category_name FROM categories;
+Find category by ID 3,SELECT category_name FROM categories WHERE category_id = 3;
+Count total categories,SELECT COUNT(category_id) FROM categories;
+Get category name for category ID 1,SELECT category_name FROM categories WHERE category_id = 1;
+List categories whose name starts with 'E',SELECT category_name FROM categories WHERE category_name LIKE 'E%';
+Show categories named 'Books',"SELECT category_id, category_name FROM categories WHERE category_name = 'Books';"
+Find categories with 'ware' in their name,SELECT category_name FROM categories WHERE category_name LIKE '%ware%';
+Get all category IDs,SELECT category_id FROM categories;
+How many categories are there?,SELECT COUNT(category_id) FROM categories;
+List all reviews,SELECT * FROM reviews;
+Show reviews for product ID 15,"SELECT review_id, review_text FROM reviews WHERE product_id = 15;"
+Find reviews with rating 5,"SELECT review_id, review_text FROM reviews WHERE rating = 5;"
+Count total reviews,SELECT COUNT(review_id) FROM reviews;
+Get review text for review ID 201,SELECT review_text FROM reviews WHERE review_id = 201;
+List reviews by user ID 8,"SELECT review_id, review_text FROM reviews WHERE user_id = 8;"
+Show reviews with rating less than 3,"SELECT review_id, review_text FROM reviews WHERE rating < 3;"
+Find the average rating for product 12,SELECT AVG(rating) FROM reviews WHERE product_id = 12;
+Get the highest rating given,SELECT MAX(rating) FROM reviews;
+List reviews ordered by date descending,"SELECT review_id, review_date FROM reviews ORDER BY review_date DESC;"
+Show reviews written on '2024-05-10',"SELECT review_id, review_text FROM reviews WHERE review_date = '2024-05-10';"
+Find reviews whose text contains 'great',"SELECT review_id, review_text FROM reviews WHERE review_text LIKE '%great%';"
+Count reviews for user 9,SELECT COUNT(review_id) FROM reviews WHERE user_id = 9;
+Get all review dates,SELECT review_date FROM reviews;
+List reviews with rating 4,"SELECT review_id, review_text FROM reviews WHERE rating = 4;"
+List all payments,SELECT * FROM payments;
+Show payments for order ID 102,"SELECT payment_id, payment_status FROM payments WHERE order_id = 102;"
+Find successful payments,"SELECT payment_id, order_id FROM payments WHERE payment_status = 'successful';"
+Count total payments,SELECT COUNT(payment_id) FROM payments;
+Get payment ID and status for payment 301,"SELECT order_id, payment_status FROM payments WHERE payment_id = 301;"
+List payments made via 'PayPal',"SELECT payment_id, order_id FROM payments WHERE payment_method = 'PayPal';"
+Show pending payments,"SELECT payment_id, order_id FROM payments WHERE payment_status = 'pending';"
+Find payments made after '2024-01-01',"SELECT payment_id, order_id FROM payments WHERE payment_date > '2024-01-01';"
+Get the latest payment date,SELECT MAX(payment_date) FROM payments;
+List payments by method 'Credit Card',"SELECT payment_id, order_id FROM payments WHERE payment_method = 'Credit Card';"
+Find payments made before '2023-07-01',"SELECT payment_id, order_id FROM payments WHERE payment_date < '2023-07-01';"
+Count successful payments,SELECT COUNT(payment_id) FROM payments WHERE payment_status = 'successful';
+Get all payment methods,SELECT DISTINCT payment_method FROM payments;
+List payments by date in ascending order,"SELECT payment_id, payment_date FROM payments ORDER BY payment_date ASC;"
+Get user names and their order amounts,"SELECT u.name, o.amount FROM users u JOIN orders o ON u.id = o.user_id;"
+Show product names and their categories,"SELECT p.name, c.category_name FROM products p JOIN categories c ON p.category_id = c.category_id;"
+List users and their review texts,"SELECT u.name, r.review_text FROM users u JOIN reviews r ON u.id = r.user_id;"
+Find orders with user names,"SELECT o.order_id, u.name FROM orders o JOIN users u ON o.user_id = u.id;"
+Get product names and their average ratings,"SELECT p.name, AVG(r.rating) FROM products p JOIN reviews r ON p.product_id = r.product_id GROUP BY p.name;"
+Show payment IDs and associated order dates,"SELECT p.payment_id, o.order_date FROM payments p JOIN orders o ON p.order_id = o.order_id;"
+List users who placed an order,SELECT DISTINCT u.name FROM users u JOIN orders o ON u.id = o.user_id;
+Find products that have reviews,SELECT DISTINCT p.name FROM products p JOIN reviews r ON p.product_id = r.product_id;
+Get order IDs and payment methods,"SELECT o.order_id, p.payment_method FROM orders o JOIN payments p ON o.order_id = p.order_id;"
+Show user names and their signup dates,"SELECT name, signup_date FROM users;"
+List product names and their stock quantity,"SELECT name, stock FROM products;"
+Find review texts and the product names they refer to,"SELECT r.review_text, p.name FROM reviews r JOIN products p ON r.product_id = p.product_id;"
+Get user names and the total amount they spent,"SELECT u.name, SUM(o.amount) FROM users u JOIN orders o ON u.id = o.user_id GROUP BY u.name;"
+Show category names and the number of products in each,"SELECT c.category_name, COUNT(p.product_id) FROM categories c LEFT JOIN products p ON c.category_id = p.category_id GROUP BY c.category_name;"
+List order IDs and the status of their payments,"SELECT o.order_id, p.payment_status FROM orders o JOIN payments p ON o.order_id = p.order_id;"
+Get user by email 'test@example.com',"SELECT id, name FROM users WHERE email = 'test@example.com';"
+List users who signed up in March 2024,"SELECT id, name FROM users WHERE strftime('%Y-%m', signup_date) = '2024-03';"
+Find users whose name ends with 'son',"SELECT id, name FROM users WHERE name LIKE '%son';"
+Show users with ID greater than 50,"SELECT id, name FROM users WHERE id > 50;"
+Count users signed up in 2023,"SELECT COUNT(id) FROM users WHERE strftime('%Y', signup_date) = '2023';"
+Get names of users who signed up on '2024-01-15',SELECT name FROM users WHERE signup_date = '2024-01-15';
+List users whose email starts with 'info',"SELECT id, name FROM users WHERE email LIKE 'info%';"
+Show all user signup dates,SELECT signup_date FROM users;
+Find users with ID less than 10,"SELECT id, name FROM users WHERE id < 10;"
+Get the name of the user with ID 25,SELECT name FROM users WHERE id = 25;
+List users whose email is not null,"SELECT id, name FROM users WHERE email IS NOT NULL;"
+Show users signed up in the current year,"SELECT id, name FROM users WHERE strftime('%Y', signup_date) = strftime('%Y', CURRENT_DATE);"
+Count users whose name is 'David',SELECT COUNT(id) FROM users WHERE name = 'David';
+Get email for user named 'Emily',SELECT email FROM users WHERE name = 'Emily';
+Find users with a specific signup date '2022-11-01',"SELECT id, name FROM users WHERE signup_date = '2022-11-01';"
+List orders with amount exactly 75.00,"SELECT order_id, user_id FROM orders WHERE amount = 75.00;"
+Show orders placed in April 2024,"SELECT order_id, user_id FROM orders WHERE strftime('%Y-%m', order_date) = '2024-04';"
+Find orders by user ID 15,"SELECT order_id, amount FROM orders WHERE user_id = 15;"
+Count orders with amount over 200,SELECT COUNT(order_id) FROM orders WHERE amount > 200;
+Get order ID and user ID for orders placed today,"SELECT order_id, user_id FROM orders WHERE order_date = CURRENT_DATE;"
+List orders with amount between 50 and 150,"SELECT order_id, amount FROM orders WHERE amount BETWEEN 50 AND 150;"
+Show orders placed before '2024-01-01',"SELECT order_id, amount FROM orders WHERE order_date < '2024-01-01';"
+Find the total amount of orders for user 20,SELECT SUM(amount) FROM orders WHERE user_id = 20;
+Get the average amount of orders placed in 2024,"SELECT AVG(amount) FROM orders WHERE strftime('%Y', order_date) = '2024';"
+List orders where amount is not 0,"SELECT order_id, amount FROM orders WHERE amount != 0;"
+Show orders placed in the last 7 days,"SELECT order_id, order_date FROM orders WHERE order_date >= DATE('now', '-7 days');"
+Count orders with amount less than 10,SELECT COUNT(order_id) FROM orders WHERE amount < 10;
+Get order ID for orders with amount 500,SELECT order_id FROM orders WHERE amount = 500;
+Find orders placed in May 2023,"SELECT order_id, amount FROM orders WHERE strftime('%Y-%m', order_date) = '2023-05';"
+Show the sum of amounts for orders placed in the current month,"SELECT SUM(amount) FROM orders WHERE strftime('%Y-%m', order_date) = strftime('%Y-%m', CURRENT_DATE);"
+List products with stock exactly 0,"SELECT product_id, name FROM products WHERE stock = 0;"
+Show products with price between 10 and 50,"SELECT product_id, name, price FROM products WHERE price BETWEEN 10 AND 50;"
+Find products by name 'Keyboard',"SELECT product_id, price FROM products WHERE name = 'Keyboard';"
+Count products in category ID 1,SELECT COUNT(product_id) FROM products WHERE category_id = 1;
+Get product name and stock for product ID 30,"SELECT name, stock FROM products WHERE product_id = 30;"
+List products whose name contains 'game',"SELECT product_id, name FROM products WHERE name LIKE '%game%';"
+Show products with stock greater than 100,"SELECT product_id, name FROM products WHERE stock > 100;"
+Find the total stock quantity of all products,SELECT SUM(stock) FROM products;
+Get the average price of all products,SELECT AVG(price) FROM products;
+List products with price less than 20,"SELECT product_id, name FROM products WHERE price < 20;"
+Show products whose name starts with 'A',"SELECT product_id, name FROM products WHERE name LIKE 'A%';"
+Count products with price over 1000,SELECT COUNT(product_id) FROM products WHERE price > 1000;
+Get product ID for product named 'Mouse',SELECT product_id FROM products WHERE name = 'Mouse';
+Find products with stock less than 10,"SELECT product_id, name FROM products WHERE stock < 10;"
+List products by category ID 5,"SELECT product_id, name FROM products WHERE category_id = 5;"
+Get category name for ID 4,SELECT category_name FROM categories WHERE category_id = 4;
+List categories whose name contains 'wear',"SELECT category_id, category_name FROM categories WHERE category_name LIKE '%wear%';"
+Show categories with ID less than 5,"SELECT category_id, category_name FROM categories WHERE category_id < 5;"
+Find the total number of categories,SELECT COUNT(category_id) FROM categories;
+Get all category names in alphabetical order,SELECT category_name FROM categories ORDER BY category_name ASC;
+List categories whose name does not contain 's',"SELECT category_id, category_name FROM categories WHERE category_name NOT LIKE '%s%';"
+Show categories with ID greater than 2,"SELECT category_id, category_name FROM categories WHERE category_id > 2;"
+Find category named 'Software',SELECT category_id FROM categories WHERE category_name = 'Software';
+Get category ID for 'Electronics',SELECT category_id FROM categories WHERE category_name = 'Electronics';
+Count categories whose name is 'Books',SELECT COUNT(category_id) FROM categories WHERE category_name = 'Books';
+List reviews with rating 1,"SELECT review_id, review_text FROM reviews WHERE rating = 1;"
+Show reviews for user ID 22,"SELECT review_id, review_text FROM reviews WHERE user_id = 22;"
+Find reviews with text 'bad',"SELECT review_id, review_text FROM reviews WHERE review_text LIKE '%bad%';"
+Count reviews for product ID 40,SELECT COUNT(review_id) FROM reviews WHERE product_id = 40;
+Get review ID and rating for review '205',"SELECT rating, review_text FROM reviews WHERE review_id = 205;"
+List reviews written on '2024-01-01',"SELECT review_id, review_text FROM reviews WHERE review_date = '2024-01-01';"
+Show reviews with rating greater than 3,"SELECT review_id, review_text FROM reviews WHERE rating > 3;"
+Find the average rating for all reviews,SELECT AVG(rating) FROM reviews;
+Get the minimum rating given,SELECT MIN(rating) FROM reviews;
+List reviews whose text contains 'slow',"SELECT review_id, review_text FROM reviews WHERE review_text LIKE '%slow%';"
+Show reviews by user ID 12,"SELECT review_id, review_text FROM reviews WHERE user_id = 12;"
+Count reviews with rating 2,SELECT COUNT(review_id) FROM reviews WHERE rating = 2;
+Get review text for reviews with rating 5,SELECT review_text FROM reviews WHERE rating = 5;
+Find reviews written in February 2024,"SELECT review_id, review_text FROM reviews WHERE strftime('%Y-%m', review_date) = '2024-02';"
+List reviews for product ID 50,"SELECT review_id, review_text FROM reviews WHERE product_id = 50;"
+List payments with status 'refunded',"SELECT payment_id, order_id FROM payments WHERE payment_status = 'refunded';"
+Show payments made on '2024-03-15',"SELECT payment_id, order_id FROM payments WHERE payment_date = '2024-03-15';"
+Find payments by order ID 110,"SELECT payment_id, payment_status FROM payments WHERE order_id = 110;"
+Count payments made via 'Bank Transfer',SELECT COUNT(payment_id) FROM payments WHERE payment_method = 'Bank Transfer';
+Get payment ID and date for payment '305',"SELECT order_id, payment_date FROM payments WHERE payment_id = 305;"
+List payments with status 'cancelled',"SELECT payment_id, order_id FROM payments WHERE payment_status = 'cancelled';"
+Show payments made after '2023-10-01',"SELECT payment_id, order_id FROM payments WHERE payment_date > '2023-10-01';"
+Find the total number of successful payments,SELECT COUNT(payment_id) FROM payments WHERE payment_status = 'successful';
+Get the latest payment date for 'PayPal' payments,SELECT MAX(payment_date) FROM payments WHERE payment_method = 'PayPal';
+List payments by status 'pending',"SELECT payment_id, order_id FROM payments WHERE payment_status = 'pending';"
+Show payments made in 2024,"SELECT payment_id, order_id FROM payments WHERE strftime('%Y', payment_date) = '2024';"
+Count payments made on '2024-07-01',SELECT COUNT(payment_id) FROM payments WHERE payment_date = '2024-07-01';
+Get payment method for payment ID 310,SELECT payment_method FROM payments WHERE payment_id = 310;
+Find payments with 'failed' status,"SELECT payment_id, order_id FROM payments WHERE payment_status = 'failed';"
+List payments with order ID 120,"SELECT payment_id, payment_status FROM payments WHERE order_id = 120;"
+Get user names and their total order amounts,"SELECT u.name, o.amount FROM users u JOIN orders o ON u.id = o.user_id;"
+Show product names and their category names,"SELECT p.name, c.category_name FROM products p JOIN categories c ON p.category_id = c.category_id;"
+List users and the count of their orders,"SELECT u.name, r.review_text FROM users u JOIN reviews r ON u.id = r.user_id;"
+Find products with reviews and their average rating,"SELECT o.order_id, u.name FROM orders o JOIN users u ON o.user_id = u.id;"
+Get order IDs and the payment status,"SELECT p.name, AVG(r.rating) FROM products p JOIN reviews r ON p.product_id = r.product_id GROUP BY p.name;"
+Show users who have placed orders,"SELECT p.payment_id, o.order_date FROM payments p JOIN orders o ON p.order_id = o.order_id;"
+List products that have reviews,SELECT DISTINCT u.name FROM users u JOIN orders o ON u.id = o.user_id;
+Find orders and the payment method used,SELECT DISTINCT p.name FROM products p JOIN reviews r ON p.product_id = r.product_id;
+Get user names and their emails,"SELECT o.order_id, p.payment_method FROM orders o JOIN payments p ON o.order_id = p.order_id;"
+Show product names and their stock quantities,"SELECT name, email FROM users;"
+List review texts and the names of the products reviewed,"SELECT name, stock FROM products;"
+Find users who have written reviews,"SELECT r.review_text, p.name FROM reviews r JOIN products p ON r.product_id = p.product_id;"
+Get order dates and the user names who placed them,SELECT DISTINCT u.name FROM users u JOIN reviews r ON u.id = r.user_id;
+List payments and the names of users who placed the corresponding orders,"SELECT c.category_name, COUNT(p.product_id) FROM categories c LEFT JOIN products p ON c.category_id = p.category_id GROUP BY c.category_name;"
+Get product names and the count of reviews for each,"SELECT p.name, COUNT(r.review_id) FROM products p LEFT JOIN reviews r ON p.product_id = r.product_id GROUP BY p.name;"
+Show users who have made payments,SELECT DISTINCT u.name FROM users u JOIN orders o ON u.id = o.user_id JOIN payments pay ON o.order_id = pay.order_id;
+Find orders with their total amount and payment status,"SELECT o.order_id, o.amount, p.payment_status FROM orders o JOIN payments p ON o.order_id = p.order_id;"
+List product names and their prices,"SELECT name, price FROM products;"
+Get user names and their signup dates,"SELECT name, signup_date FROM users;"
+Get users whose ID is between 10 and 20,"SELECT id, name FROM users WHERE id BETWEEN 10 AND 20;"
+List users who signed up in the last year,"SELECT id, name FROM users WHERE signup_date >= DATE('now', '-1 year');"
+Find users with a specific name 'Michael',"SELECT id, email FROM users WHERE name = 'Michael';"
+Show users whose email contains 'org',"SELECT id, name FROM users WHERE email LIKE '%org%';"
+Count users with a signup date in 2020,"SELECT COUNT(id) FROM users WHERE strftime('%Y', signup_date) = '2020';"
+Get all user IDs,SELECT id FROM users;
+List users whose name does not contain 'a',"SELECT id, name FROM users WHERE name NOT LIKE '%a%';"
+Show users signed up in the first half of 2023,"SELECT id, name FROM users WHERE signup_date BETWEEN '2023-01-01' AND '2023-06-30';"
+Find users by email 'info@domain.com',"SELECT id, name FROM users WHERE email = 'info@domain.com';"
+Get the name of the user who signed up earliest,SELECT name FROM users ORDER BY signup_date ASC LIMIT 1;
+"List users with ID 1, 2, or 3","SELECT id, name FROM users WHERE id IN (1, 2, 3);"
+Show users whose email ends with '.net',"SELECT id, name FROM users WHERE email LIKE '%.net';"
+Count users signed up after '2024-06-01',SELECT COUNT(id) FROM users WHERE signup_date > '2024-06-01';
+Get email for user with ID 40,SELECT email FROM users WHERE id = 40;
+Find users whose signup date is '2023-03-10',"SELECT id, name FROM users WHERE signup_date = '2023-03-10';"
+List orders with amount exactly 25.50,"SELECT order_id, user_id FROM orders WHERE amount = 25.50;"
+Show orders placed in the first quarter of 2024,"SELECT order_id, user_id FROM orders WHERE strftime('%Y-%m', order_date) BETWEEN '2024-01' AND '2024-03';"
+Find orders by user ID 30,"SELECT order_id, amount FROM orders WHERE user_id = 30;"
+Count orders with amount less than 50,SELECT COUNT(order_id) FROM orders WHERE amount < 50;
+Get order ID and amount for orders placed in the last 30 days,"SELECT order_id, amount FROM orders WHERE order_date >= DATE('now', '-30 days');"
+List orders with amount between 10 and 30,"SELECT order_id, amount FROM orders WHERE amount BETWEEN 10 AND 30;"
+Show orders placed before '2023-07-01',"SELECT order_id, amount FROM orders WHERE order_date < '2023-07-01';"
+Find the sum of amounts for orders placed today,SELECT SUM(amount) FROM orders WHERE order_date = CURRENT_DATE;
+Get the average amount of orders for user 5,SELECT AVG(amount) FROM orders WHERE user_id = 5;
+List orders where order_date is not null,"SELECT order_id, amount FROM orders WHERE order_date IS NOT NULL;"
+Show orders placed in June 2024,"SELECT order_id, amount FROM orders WHERE strftime('%Y-%m', order_date) = '2024-06';"
+Count orders with amount greater than 1000,SELECT COUNT(order_id) FROM orders WHERE amount > 1000;
+Get order ID for orders with amount 200,SELECT order_id FROM orders WHERE amount = 200;
+Find orders placed in December 2023,"SELECT order_id, amount FROM orders WHERE strftime('%Y-%m', order_date) = '2023-12';"
+Show the total amount of orders placed in the last 90 days,"SELECT SUM(amount) FROM orders WHERE order_date >= DATE('now', '-90 days');"
+List products with stock exactly 1,"SELECT product_id, name FROM products WHERE stock = 1;"
+Show products with price between 100 and 200,"SELECT product_id, name, price FROM products WHERE price BETWEEN 100 AND 200;"
+Find products by name 'Monitor',"SELECT product_id, price FROM products WHERE name = 'Monitor';"
+Count products in category ID 3,SELECT COUNT(product_id) FROM products WHERE category_id = 3;
+Get product name and price for product ID 45,"SELECT name, price FROM products WHERE product_id = 45;"
+List products whose name contains 'phone',"SELECT product_id, name FROM products WHERE name LIKE '%phone%';"
+Show products with stock less than 20,"SELECT product_id, name FROM products WHERE stock < 20;"
+Find the total stock quantity for category ID 1,SELECT SUM(stock) FROM products WHERE category_id = 1;
+Get the average price of products in category ID 2,SELECT AVG(price) FROM products WHERE category_id = 2;
+List products with price greater than 700,"SELECT product_id, name FROM products WHERE price > 700;"
+Show products whose name starts with 'S',"SELECT product_id, name FROM products WHERE name LIKE 'S%';"
+Count products with price less than 50,SELECT COUNT(product_id) FROM products WHERE price < 50;
+Get product ID for product named 'Webcam',SELECT product_id FROM products WHERE name = 'Webcam';
+Find products with stock between 5 and 15,"SELECT product_id, name FROM products WHERE stock BETWEEN 5 AND 15;"
+List products by category ID 4,"SELECT product_id, name FROM products WHERE category_id = 4;"
+Get category name for ID 6,SELECT category_name FROM categories WHERE category_id = 6;
+List categories whose name contains 'food',"SELECT category_id, category_name FROM categories WHERE category_name LIKE '%food%';"
+Show categories with ID greater than 5,"SELECT category_id, category_name FROM categories WHERE category_id > 5;"
+Find the number of categories,SELECT COUNT(category_id) FROM categories;
+Get all category names in reverse alphabetical order,SELECT category_name FROM categories ORDER BY category_name DESC;
+List categories whose name does not contain 'e',"SELECT category_id, category_name FROM categories WHERE category_name NOT LIKE '%e%';"
+Show categories with ID less than 3,"SELECT category_id, category_name FROM categories WHERE category_id < 3;"
+Find category named 'Home Goods',SELECT category_id FROM categories WHERE category_name = 'Home Goods';
+Get category ID for 'Books',SELECT category_id FROM categories WHERE category_name = 'Books';
+Count categories whose name is 'Electronics',SELECT COUNT(category_id) FROM categories WHERE category_name = 'Electronics';
+List reviews with rating 2,"SELECT review_id, review_text FROM reviews WHERE rating = 2;"
+Show reviews for user ID 25,"SELECT review_id, review_text FROM reviews WHERE user_id = 25;"
+Find reviews with text 'excellent',"SELECT review_id, review_text FROM reviews WHERE review_text LIKE '%excellent%';"
+Count reviews for product ID 55,SELECT COUNT(review_id) FROM reviews WHERE product_id = 55;
+Get review ID and text for review '210',"SELECT rating, review_text FROM reviews WHERE review_id = 210;"
+List reviews written on '2023-08-20',"SELECT review_id, review_text FROM reviews WHERE review_date = '2023-08-20';"
+Show reviews with rating less than or equal to 3,"SELECT review_id, review_text FROM reviews WHERE rating <= 3;"
+Find the sum of all ratings,SELECT SUM(rating) FROM reviews;
+Get the maximum rating given to product 10,SELECT MAX(rating) FROM reviews WHERE product_id = 10;
+List reviews whose text contains 'noisy',"SELECT review_id, review_text FROM reviews WHERE review_text LIKE '%noisy%';"
+Show reviews by user ID 15,"SELECT review_id, review_text FROM reviews WHERE user_id = 15;"
+Count reviews with rating 4,SELECT COUNT(review_id) FROM reviews WHERE rating = 4;
+Get review text for reviews with rating 1,SELECT review_text FROM reviews WHERE rating = 1;
+Find reviews written in October 2023,"SELECT review_id, review_text FROM reviews WHERE strftime('%Y-%m', review_date) = '2023-10';"
+List reviews for product ID 60,"SELECT review_id, review_text FROM reviews WHERE product_id = 60;"
+Show payments made on '2023-09-01',"SELECT payment_id, order_id FROM payments WHERE payment_date = '2023-09-01';"
+Find payments by order ID 130,"SELECT payment_id, payment_status FROM payments WHERE order_id = 130;"
+Count payments made via 'Debit Card',SELECT COUNT(payment_id) FROM payments WHERE payment_method = 'Debit Card';
+Get payment ID and method for payment '315',"SELECT order_id, payment_date FROM payments WHERE payment_id = 315;"
+List payments with status 'completed',"SELECT payment_id, order_id FROM payments WHERE payment_status = 'completed';"
+Show payments made after '2024-05-01',"SELECT payment_id, order_id FROM payments WHERE payment_date > '2024-05-01';"
+Find the total number of pending payments,SELECT COUNT(payment_id) FROM payments WHERE payment_status = 'pending';
+Get the earliest payment date for 'Bank Transfer' payments,SELECT MIN(payment_date) FROM payments WHERE payment_method = 'Bank Transfer';
+List payments by status 'successful',"SELECT payment_id, order_id FROM payments WHERE payment_status = 'successful';"
+Show payments made in 2023,"SELECT payment_id, order_id FROM payments WHERE strftime('%Y', payment_date) = '2023';"
+Count payments made on '2024-06-15',SELECT COUNT(payment_id) FROM payments WHERE payment_date = '2024-06-15';
+Get payment status for payment ID 320,SELECT payment_status FROM payments WHERE payment_id = 320;
+Find payments with 'pending' status,"SELECT payment_id, order_id FROM payments WHERE payment_status = 'pending';"
+List payments with order ID 140,"SELECT payment_id, payment_status FROM payments WHERE order_id = 140;"
+Get user names and their latest order date,"SELECT u.name, MAX(o.order_date) FROM users u JOIN orders o ON u.id = o.user_id GROUP BY u.name;"
+Show product names and their category IDs,"SELECT p.name, c.category_id FROM products p JOIN categories c ON p.category_id = c.category_id;"
+List users and the total amount they spent on orders,"SELECT u.name, SUM(o.amount) FROM users u JOIN orders o ON u.id = o.user_id GROUP BY u.name;"
+Find products with reviews and their review dates,"SELECT p.name, r.review_date FROM products p JOIN reviews r ON p.product_id = r.product_id;"
+Get order IDs and the payment dates,"SELECT o.order_id, p.payment_date FROM orders o JOIN payments p ON o.order_id = p.order_id;"
+Show users who have left reviews,SELECT DISTINCT u.name FROM users u JOIN reviews r ON u.id = r.user_id;
+List products that have been ordered,SELECT DISTINCT p.name FROM products p JOIN orders o ON p.product_id = o.order_id;
+Find payments and the names of the users who made them,"SELECT p.payment_id, u.name FROM payments p JOIN orders o ON p.order_id = o.order_id JOIN users u ON o.user_id = u.id;"
+Get user names and the count of products they reviewed,"SELECT u.name, COUNT(r.product_id) FROM users u JOIN reviews r ON u.id = r.user_id GROUP BY u.name;"
+Show product names and their average review rating,"SELECT p.name, AVG(r.rating) FROM products p JOIN reviews r ON p.product_id = r.product_id GROUP BY p.name;"
+List reviews and the email of the user who wrote them,"SELECT r.review_text, u.email FROM reviews r JOIN users u ON r.user_id = u.id;"
+Find orders and the payment status for each,"SELECT o.order_id, p.payment_status FROM orders o JOIN payments p ON o.order_id = p.order_id;"
+Get category names and the total stock of products in each,"SELECT c.category_name, SUM(p.stock) FROM categories c JOIN products p ON c.category_id = p.category_id GROUP BY c.category_name;"
+Show users who have made payments with 'Credit Card',SELECT DISTINCT u.name FROM users u JOIN orders o ON u.id = o.user_id JOIN payments p ON o.order_id = p.order_id WHERE p.payment_method = 'Credit Card';
+List products that are in stock and have a rating of 5,SELECT p.name FROM products p JOIN reviews r ON p.product_id = r.product_id WHERE p.stock > 0 AND r.rating = 5;
+Find orders placed by users who signed up in 2024,"SELECT o.order_id, u.name FROM orders o JOIN users u ON o.user_id = u.id WHERE strftime('%Y', u.signup_date) = '2024';"
+Get payment IDs and the order amounts they correspond to,"SELECT p.payment_id, o.amount FROM payments p JOIN orders o ON p.order_id = o.order_id;"
+Show the names of products that have received any reviews,SELECT DISTINCT p.name FROM products p JOIN reviews r ON p.product_id = r.product_id;
+List users who have placed more than 2 orders,SELECT u.name FROM users u JOIN orders o ON u.id = o.user_id GROUP BY u.name HAVING COUNT(o.order_id) > 2;
+Find categories that have products with a price over 100,SELECT DISTINCT c.category_name FROM categories c JOIN products p ON c.category_id = p.category_id WHERE p.price > 100;
+Get review texts for products in the 'Electronics' category,SELECT r.review_text FROM reviews r JOIN products p ON r.product_id = p.product_id JOIN categories c ON p.category_id = c.category_id WHERE c.category_name = 'Electronics';
+Show the total number of orders for each user,"SELECT u.name, COUNT(o.order_id) FROM users u JOIN orders o ON u.id = o.user_id GROUP BY u.name;"
+List products that are out of stock and have reviews,SELECT p.name FROM products p JOIN reviews r ON p.product_id = r.product_id WHERE p.stock = 0;
+Find payments that are successful and associated with orders from 'Alice Smith',SELECT p.payment_id FROM payments p JOIN orders o ON p.order_id = o.order_id JOIN users u ON o.user_id = u.id WHERE p.payment_status = 'successful' AND u.name = 'Alice Smith';
+Get user names and the number of reviews they have written,"SELECT u.name, COUNT(r.review_id) FROM users u LEFT JOIN reviews r ON u.id = r.user_id GROUP BY u.name;"
+Show order IDs and the names of products included in them,"SELECT o.order_id, p.name FROM orders o JOIN products p ON o.order_id = p.product_id;"
+List categories that contain products with stock less than 10,SELECT c.category_name FROM categories c JOIN products p ON c.category_id = p.category_id WHERE p.stock < 10;
+Find the earliest review date for each product,"SELECT p.name, MIN(r.review_date) FROM products p JOIN reviews r ON p.product_id = r.product_id GROUP BY p.name;"
+Get the total amount of all successful payments,SELECT SUM(amount) FROM payments WHERE payment_status = 'successful';
+Show users who have placed orders in the last 3 months,"SELECT u.name FROM users u JOIN orders o ON u.id = o.user_id WHERE o.order_date >= DATE('now', '-3 months');"
+Get all distinct user names,SELECT DISTINCT name FROM users;
+List users whose signup date is after '2024-01-01' and before '2024-03-31',"SELECT id, name FROM users WHERE signup_date BETWEEN '2024-01-01' AND '2024-03-31';"
+Show users whose name contains 'an',"SELECT id, name FROM users WHERE name LIKE '%an%';"
+Find users by email 'support@company.com',"SELECT id, name FROM users WHERE email = 'support@company.com';"
+Get the latest signup date among all users,SELECT MAX(signup_date) FROM users;
+List orders with amount greater than or equal to 50,"SELECT order_id, user_id FROM orders WHERE amount >= 50;"
+Show orders placed in the second quarter of 2023,"SELECT order_id, user_id FROM orders WHERE strftime('%Y-%m', order_date) BETWEEN '2023-04' AND '2023-06';"
+Find orders by user ID 40,"SELECT order_id, amount FROM orders WHERE user_id = 40;"
+Count orders with amount less than or equal to 100,SELECT COUNT(order_id) FROM orders WHERE amount <= 100;
+Get order ID and amount for orders placed in the last 60 days,"SELECT order_id, amount FROM orders WHERE order_date >= DATE('now', '-60 days');"
+List orders with amount not equal to 0,"SELECT order_id, amount FROM orders WHERE amount != 0;"
+Show orders placed in October 2022,"SELECT order_id, amount FROM orders WHERE strftime('%Y-%m', order_date) = '2022-10';"
+Find the sum of amounts for orders from user 1,SELECT SUM(amount) FROM orders WHERE user_id = 1;
+Get the average amount of orders placed in July,"SELECT AVG(amount) FROM orders WHERE strftime('%m', order_date) = '07';"
+List orders where order_date is '2024-07-05',"SELECT order_id, user_id FROM orders WHERE order_date = '2024-07-05';"
+List products with stock exactly 10,"SELECT product_id, name FROM products WHERE stock = 10;"
+Show products with price less than 75,"SELECT product_id, name FROM products WHERE price < 75;"
+Find products by name 'Headphones',"SELECT product_id, price FROM products WHERE name = 'Headphones';"
+Count products with stock greater than 50,SELECT COUNT(product_id) FROM products WHERE category_id = 3;
+Get product name and category ID for product ID 50,"SELECT name, category_id FROM products WHERE product_id = 50;"
+List products whose name contains 'light',"SELECT product_id, name FROM products WHERE name LIKE '%light%';"
+Show products with price between 200 and 400,"SELECT product_id, name FROM products WHERE price BETWEEN 200 AND 400;"
+Find the total stock quantity for products with price over 100,SELECT SUM(stock) FROM products WHERE price > 100;
+Get the average price of products with stock less than 5,SELECT AVG(price) FROM products WHERE stock < 5;
+List products with price exactly 99.99,"SELECT product_id, name FROM products WHERE price = 99.99;"
+Get category name for ID 7,SELECT category_name FROM categories WHERE category_id = 7;
+List categories whose name contains 'tech',"SELECT category_id, category_name FROM categories WHERE category_name LIKE '%tech%';"
+Show categories with ID between 1 and 3,"SELECT category_id, category_name FROM categories WHERE category_id BETWEEN 1 AND 3;"
+Find the number of unique category names,SELECT COUNT(DISTINCT category_name) FROM categories;
+Get all category IDs in ascending order,SELECT category_name FROM categories ORDER BY category_name ASC;
+List reviews with rating 3,"SELECT review_id, review_text FROM reviews WHERE rating = 3;"
+Show reviews for user ID 30,"SELECT review_id, review_text FROM reviews WHERE user_id = 30;"
+Find reviews with text 'average',"SELECT review_id, review_text FROM reviews WHERE review_text LIKE '%average%';"
+Count reviews for product ID 65,SELECT COUNT(review_id) FROM reviews WHERE product_id = 65;
+Get review ID and user ID for review '215',"SELECT user_id, rating FROM reviews WHERE review_id = 215;"
+Show reviews with rating greater than 4,"SELECT review_id, review_text FROM reviews WHERE rating > 4;"
+Get the earliest review date,SELECT MIN(review_date) FROM reviews;
+List reviews whose text contains 'delivery',"SELECT review_id, review_text FROM reviews WHERE review_text LIKE '%delivery%';"
+List payments with status 'authorized',"SELECT payment_id, order_id FROM payments WHERE payment_status = 'authorized';"
+Show payments made on '2024-04-01',"SELECT payment_id, order_id FROM payments WHERE payment_date = '2024-04-01';"
+Find payments by order ID 150,"SELECT payment_id, payment_status FROM payments WHERE order_id = 150;"
+Count payments made via 'Gift Card',SELECT COUNT(payment_id) FROM payments WHERE payment_method = 'Gift Card';
+Get payment ID and method for payment '325',"SELECT order_id, payment_status FROM payments WHERE payment_id = 325;"
+Show payments made after '2024-01-15',"SELECT payment_id, order_id FROM payments WHERE payment_date > '2024-01-15';"
+Find the total number of pending payments made via 'Bank Transfer',SELECT COUNT(payment_id) FROM payments WHERE payment_status = 'pending' AND payment_method = 'Bank Transfer';
+Get the latest payment date for successful payments,SELECT MAX(payment_date) FROM payments WHERE payment_status = 'successful';
+List payments by status 'refunded',"SELECT payment_id, order_id FROM payments WHERE payment_status = 'refunded';"
+Get user names and their email addresses,"SELECT name, email FROM users;"
+Show product names and their prices,"SELECT name, price FROM products;"
+List users and the order amounts they placed,"SELECT u.name, o.amount FROM users u JOIN orders o ON u.id = o.user_id;"
+Find products that have reviews and their ratings,"SELECT p.name, r.rating FROM products p JOIN reviews r ON p.product_id = r.product_id;"
+Get order IDs and the payment methods used,"SELECT o.order_id, p.payment_method FROM orders o JOIN payments p ON o.order_id = p.order_id;"
+List products that belong to a category,SELECT p.name FROM products p JOIN categories c ON p.category_id = c.category_id;
+Find reviews and the names of the users who wrote them,"SELECT r.review_text, u.name FROM reviews r JOIN users u ON r.user_id = u.id;"
+Get order dates and the names of the users who placed them,"SELECT o.order_date, u.name FROM orders o JOIN users u ON o.user_id = u.id;"
+Show category names and the products belonging to them,"SELECT c.category_name, p.name FROM categories c JOIN products p ON c.category_id = p.category_id;"
